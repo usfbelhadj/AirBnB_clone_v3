@@ -14,9 +14,6 @@ from flask import jsonify
 from api.v1.views import app_views
 
 
-classes = {"Amenity": Amenity, "City": City, "Place": Place,
-           "Review": Review, "State": State, "User": User}
-
 @app_views.route('/status')
 def status():
     """[status]
@@ -26,11 +23,16 @@ def status():
     """
     return jsonify({"status": "OK"})
 
+
 @app_views.route('/stats')
 def nobj():
     """[retrieve the number of each objects by type]
     """
-    nobjs = {}
-    for obj in classes:
-        nobjs[obj] = storage.count(classes[obj])
+    nobjs = {"amenity": storage.count("Amenity"),
+             "reviews": storage.count("Reviews"),
+             "states": storage.count("State"),
+             "users": storage.count("User"),
+             "cities": storage.count("City"),
+             "places": storage.count("Place")
+             }
     return jsonify(nobjs)
