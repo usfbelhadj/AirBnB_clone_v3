@@ -32,7 +32,12 @@ def status():
 def nobj():
     """[retrieve the number of each objects by type]
     """
-    nobjs = {}
-    for obj in classes:
-        nobjs[obj] = storage.count(classes[obj])
-    return jsonify(nobjs)
+    counts = {
+        "amenities": storage.count("Amenity"),
+        "states": storage.count("State"),
+        "cities": storage.count("City"),
+        "reviews": storage.count("Review"),
+        "places": storage.count("Place"),
+        "users": storage.count("User")
+    }
+    return jsonify(counts)
