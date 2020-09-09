@@ -78,10 +78,10 @@ At the end of this project, you are expected to be able to [explain to anyone](h
 No known bugs at this time. 
 
 ## Authors
-Moez Ben Rebah - [Github](https://github.com/Boul3ez85) / [Twitter](https://twitter.com/benrebahmoez1)
-Karim Bahri - [Github](https://github.com/GEEK1050) / [Twitter](https://twitter.com/karimba06792328)
-Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
-Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
+- Moez Ben Rebah - [Github](https://github.com/Boul3ez85) / [Twitter](https://twitter.com/benrebahmoez1)
+- Karim Bahri - [Github](https://github.com/GEEK1050) / [Twitter](https://twitter.com/karimba06792328)
+- Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
+- Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
 
 Second part of Airbnb: Joann Vuong
 ## License
