@@ -7,12 +7,12 @@ from models import storage
 
 
 dbClass = {
-  "amenities": 47,
-  "cities": 36,
-  "places": 154,
-  "reviews": 718,
-  "states": 27,
-  "users": 31
+  "amenities": "Amenities",
+  "cities": "Cities",
+  "places": "Places",
+  "reviews": "Reviews",
+  "states": "States",
+  "users": "Users"
 }
 
 
@@ -24,6 +24,7 @@ def objStatus():
 
 @app_views.route('/stats', strict_slashes=False)
 def ret_cls():
+    """return the number of objects"""
     ret_dic = {}
     for k, v in dbClass.items():
         ret_dic[k] = storage.count(v)
