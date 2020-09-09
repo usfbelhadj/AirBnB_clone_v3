@@ -23,7 +23,7 @@ def close(self):
 
 
 @app.errorhandler(404)
-def errorhandle(er):
+def errormsg(er):
     """"[404 error handler]"
 
     Args:
