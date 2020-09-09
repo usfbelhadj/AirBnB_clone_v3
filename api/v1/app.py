@@ -6,7 +6,7 @@
 
 from api.v1.views import app_views
 from models import storage
-from flask import Flask
+from flask import Flask, make_response
 from os import getenv
 from flask import jsonify
 
@@ -29,8 +29,7 @@ def errorhandle(er):
     Args:
         er ([type]): [description]
     """
-    error = {"error": "Not found"}
-    return jsonify(error)
+    return make_response(jsonify({"error": "Not found"}), 404)
 
 if __name__ == "__main__":
     api_host = getenv('HBNB_API_HOST', default='0.0.0.0')
