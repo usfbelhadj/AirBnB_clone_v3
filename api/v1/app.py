@@ -8,16 +8,29 @@ from api.v1.views import app_views
 from models import storage
 from flask import Flask
 from os import getenv
+from flask import jsonify
 
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
+
 
 @app.teardown_appcontext
 def close(self):
     """"[calling close function]"
     """
     storage.close()
+
+
+@app.errorhandler(404)
+def errorhandle(er):
+    """"[404 error handler]"
+
+    Args:
+        er ([type]): [description]
+    """
+    error = {"error": "Not found"}
+    return jsonify(error)
 
 if __name__ == "__main__":
     api_host = getenv('HBNB_API_HOST', default='0.0.0.0')
