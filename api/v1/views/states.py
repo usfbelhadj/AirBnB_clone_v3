@@ -40,15 +40,16 @@ def del_obj(state_id):
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_obj():
     """create an object"""
-    if not request.get_json() or if 'name' not in request.get_json():
+    if not request.get_json() or 'name' not in request.get_json():
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
-    state = State(**request.get_json())
+    state = State(name=request.get_json(['name']))
+    state.new(state)
     state.save()
     return make_response(jsonify(state.to_dict()), 201)
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
-def update_obj():
+def update_obj(state_id):
     """update an existing object"""
     state = storage.get('State', state_id)
     if state is None:
@@ -56,7 +57,7 @@ def update_obj():
     if not request.get_json():
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
     for k, v in request.get_json().items():
-        if k not ['id', 'created_at', 'updated_at']:
+        if k not in ['id', 'created_at', 'updated_at']:
             setattr(state, k, v)
     state.save()
     return jsonify(state.to_dict())
