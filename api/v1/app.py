@@ -15,13 +15,6 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 
 
-@app.teardown_appcontext
-def close(self):
-    """"[calling close function]"
-    """
-    storage.close()
-
-
 @app.errorhandler(404)
 def errormsg(er):
     """"[404 error handler]"
@@ -30,6 +23,14 @@ def errormsg(er):
         er ([type]): [description]
     """
     return make_response(jsonify({"error": "Not found"}), 404)
+
+
+@app.teardown_appcontext
+def close(self):
+    """"[calling close function]"
+    """
+    storage.close()
+
 
 if __name__ == "__main__":
     api_host = getenv('HBNB_API_HOST', default='0.0.0.0')
