@@ -14,10 +14,6 @@ from flask import jsonify
 from api.v1.views import app_views
 
 
-classes = {"Amenity": Amenity, "City": City, "Place": Place,
-           "Review": Review, "State": State, "User": User}
-
-
 @app_views.route('/status')
 def status():
     """[status]
