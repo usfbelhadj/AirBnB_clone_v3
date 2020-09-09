@@ -7,12 +7,12 @@ from models import storage
 
 
 dbClass = {
-  "amenities": "Amenities",
-  "cities": "Cities",
-  "places": "Places",
-  "reviews": "Reviews",
-  "states": "States",
-  "users": "Users"
+    "amenities": "Amenity",
+    "cities": "City",
+    "places": "Place",
+    "reviews": "Review",
+    "states": "State",
+    "users": "User"
 }
 
 
@@ -29,7 +29,3 @@ def ret_cls():
     for k, v in dbClass.items():
         ret_dic[k] = storage.count(v)
     return jsonify(ret_dic)
-
-
-if __name__ == "__main__":
-    pass
