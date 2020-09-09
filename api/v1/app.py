@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Module for Flask REST application"""
 
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, make_response, jsonify
 from models import storage
 from api.v1.views import app_views
 import os
@@ -15,6 +15,10 @@ app.register_blueprint(app_views)
 def teardown(error):
     """close database session"""
     storage.close()
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 if __name__ == "__main__":
