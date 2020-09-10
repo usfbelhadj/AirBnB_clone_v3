@@ -12,7 +12,7 @@ from models.city import City
 
 @app_views.route('/cities/<city_id>', methods=['GET'],
                  strict_slashes=False)
-def citygetter(city_id):
+def citygetter():
     """[get all states]
     Returns:
         [json]: [description]
@@ -36,7 +36,7 @@ def citygetterst(state_id):
     """
     stid = storage.get("State", state_id)
     if stid:
-        return jsonify([city.to_dict() for city in state.cities])
+        return jsonify([city.to_dict() for city in stid.cities])
     else:
         abort(404)
 
@@ -76,7 +76,6 @@ def createcity(state_id):
         storage.new(new_state)
         storage.save()
         return jsonify(new_state.to_dict()), 201
-    
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
