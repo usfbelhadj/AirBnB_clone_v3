@@ -36,7 +36,7 @@ def citygetterst(state_id):
     """
     stid = storage.get("State", state_id)
     if stid:
-        return jsonify(stid.to_dict())
+        return jsonify([city.to_dict() for city in state.cities])
     else:
         abort(404)
 
