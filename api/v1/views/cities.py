@@ -94,7 +94,7 @@ def updatedcity(city_id):
     if city:
         if cont is None:
                 abort(400, "Not a JSON")
-        for key, value in cont.items():    
+        for key, value in cont.items():
             if key not in ["id", "created_at", "updated_at", "state_id"]:
                 pass
             else:
