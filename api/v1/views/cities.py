@@ -12,7 +12,7 @@ from models.city import City
 
 @app_views.route("/states/<state_id>/cities", strict_slashes=False,
                  methods=["GET"])
-def statesgetter():
+def citygetter():
     """[get all states]
     Returns:
         [json]: [description]
@@ -26,7 +26,7 @@ def statesgetter():
 
 @app_views.route('/cities/<city_id>', methods=['GET'],
                  strict_slashes=False)
-def stategetter(state_id):
+def citygetterst(state_id):
     """[get state by id]
 
     Args:
@@ -35,11 +35,11 @@ def stategetter(state_id):
     Returns:
         [json]: [description]
     """
-    city = storage.get(City, city_id)
-    if not city:
-        abort(404)
+    stid = storage.get("State", state_id)
+    if stid:
+        return jsonify(stid.to_dict())
     else:
-        return jsonify(city.to_dict())
+        abort(404)
 
 
 @app_views.route('/cities/<city_id>', methods=['DELETE'],
@@ -77,6 +77,7 @@ def createstate():
         storage.new(new_state)
         storage.save()
         return jsonify(new_state.to_dict()), 201
+    
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
