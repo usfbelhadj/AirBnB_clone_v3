@@ -100,5 +100,4 @@ def updatedcity(city_id):
         return jsonify(city.to_dict()), 200
     elif cont is None:
         abort(400, "Not a JSON")
-    if city is None:
-        abort(404)
+    abort(404)
