@@ -19,7 +19,7 @@ def citygetter(city_id):
     """
     city = storage.get("City", city_id)
     if city:
-        return jsonify(city.to_dict())
+        return jsonify(city.to_dict()), 200
     abort(404)
 
 @app_views.route("/states/<state_id>/cities", strict_slashes=False,
@@ -35,7 +35,7 @@ def citygetterst(state_id):
     """
     stid = storage.get("State", state_id)
     if stid:
-        return jsonify([city.to_dict() for city in stid.cities])
+        return jsonify([city.to_dict() for city in stid.cities]), 200
     else:
         abort(404)
 
@@ -74,6 +74,7 @@ def createcity(state_id):
         elif "name" not in ct.keys():
             abort(400, "Missing name")
         else:
+            ct['state_id'] = st.id
             city = City(**ct)
             storage.new(city)
             storage.save()
