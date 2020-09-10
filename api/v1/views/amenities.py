@@ -25,7 +25,7 @@ def amenity_obj(amenity_id):
     amenity = storage.get('Amenity', amenity_id)
     if amenity is None:
         abort(404)
-    return jsonify(amenities)
+    return jsonify(amenity.to_dict())
 
 
 @app_views.route('/api/v1/amenities/<amenity_id>', methods=['DELETE'],
