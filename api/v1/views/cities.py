@@ -89,17 +89,17 @@ def updatedcity(city_id):
     Args:
         state_id ([type]): [description]
     """
-    city = storage.get(City, city_id)
+    city = storage.get("City", city_id)
     cont = request.get_json()
-    if cont:
-        for key, value in cont.items():
+    if city:
+        if cont is None:
+                abort(400, "Not a JSON")
+        for key, value in cont.items():    
             if key not in ["id", "created_at", "updated_at", "state_id"]:
                 pass
             else:
                 setattr(city, key, value)
         storage.save()
         return jsonify(city.to_dict()), 200
-    elif cont is None:
-        abort(400, "Not a JSON")
     if city is None:
         abort(404)
