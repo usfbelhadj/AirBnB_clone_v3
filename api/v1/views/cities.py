@@ -12,7 +12,7 @@ from models.city import City
 
 @app_views.route('/cities/<city_id>', methods=['GET'],
                  strict_slashes=False)
-def citygetter():
+def citygetter(city_id):
     """[get all states]
     Returns:
         [json]: [description]
