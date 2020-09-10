@@ -22,6 +22,7 @@ def citygetter(city_id):
         return jsonify(city.to_dict()), 200
     abort(404)
 
+
 @app_views.route("/states/<state_id>/cities", strict_slashes=False,
                  methods=["GET"])
 def citygetterst(state_id):
@@ -65,10 +66,9 @@ def createcity(state_id):
     Returns:
         [type]: [description]
     """
-    from models.city import City
     st = storage.get("State", state_id)
+    ct = request.get_json()
     if st:
-        ct = request.get_json()
         if ct is None:
             abort(400, "Not a JSON")
         elif "name" not in ct.keys():
