@@ -12,6 +12,7 @@ from models.amenity import Amenity
 @app_views.route('/api/v1/amenities', methods=['GET'], strict_slashes=False)
 def ret_amenit():
     """retrieve the list of all amenity objects"""
+    amenities = []
     for amenity in storage.all('Amenity').values():
         amenities.append(amenity.to_dict())
     return jsonify(amenities)
@@ -24,9 +25,6 @@ def amenity_obj(amenity_id):
     amenity = storage.get('Amenity', amenity_id)
     if amenity is None:
         abort(404)
-    amenities = []
-    for amenity in storage.all('Amenity').values():
-        amenities.append(amenity.to_dict())
     return jsonify(amenities)
 
 
