@@ -12,16 +12,15 @@ from models.city import City
 
 @app_views.route('/cities/<city_id>', methods=['GET'],
                  strict_slashes=False)
-def citygetter():
+def citygetter(city_id):
     """[get all states]
     Returns:
         [json]: [description]
     """
-    states = storage.all("City").values()
-    cities = []
-    for city in states.cities:
-        cities.append(city.to_dict())
-    return jsonify(cities)
+    city = storage.get("City", city_id)
+    if city:
+        return jsonify(city.to_dict())
+    abort(404)
 
 @app_views.route("/states/<state_id>/cities", strict_slashes=False,
                  methods=["GET"])
