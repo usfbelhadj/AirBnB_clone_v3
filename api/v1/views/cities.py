@@ -90,7 +90,7 @@ def updated(city_id):
     ct = request.get_json()
     if ct:
         for key, value in ct.items():
-            if key in ['id', 'created_at', 'updated_at']:
+            if key not in ["id", "created_at", "updated_at", "state_id"]:
                 pass
             else:
                 setattr(city, key, value)
