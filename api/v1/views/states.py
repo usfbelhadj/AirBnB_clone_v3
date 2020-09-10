@@ -90,7 +90,6 @@ def updated(state_id):
                 pass
             else:
                 setattr(stid, key, value)
-        storage.new()
         storage.save()
         return jsonify(stid.to_dict()), 200
     elif st is None:
