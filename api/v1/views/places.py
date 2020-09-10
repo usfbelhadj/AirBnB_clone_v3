@@ -31,7 +31,7 @@ def placegetter(place_id):
 @app_views.route('/cities/<city_id>/places',
                  methods=['GET'],
                  strict_slashes=False)
-def getallplace(city_id=None):
+def getallplace(city_id):
     """[get all users]
 
     Args:
