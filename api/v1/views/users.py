@@ -87,9 +87,9 @@ def updateuser(user_id=None):
     Args:
         state_id ([type]): [description]
     """
+    cont = request.get_json()
     user = storage.get(User, user_id)
     if user:
-        cont = request.get_json()
         if cont is None:
             abort(400, "Not a JSON")
         for key, value in cont.items():
@@ -98,6 +98,5 @@ def updateuser(user_id=None):
             setattr(user, key, value)
         storage.save()
         return jsonify(user.to_dict())
-    elif cont is None:
-        abort(400, "Not a JSON")
-    abort(404)
+    if user is None:
+        abort(404)
