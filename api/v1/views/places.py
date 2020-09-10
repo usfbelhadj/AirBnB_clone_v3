@@ -107,8 +107,8 @@ def updateplace(place_id=None):
         if cont is None:
             abort(400, "Not a JSON")
         for k, v in cont.items():
-            if k in ['id', 'user_id', 'city_id', 'created_at',
-                     'updated_at']:
+            if k in ['id', 'created_at', 'updated_at',
+                     'user_id', 'city_id']:
                 pass
             setattr(place, k, v)
         storage.save()
