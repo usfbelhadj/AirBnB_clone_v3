@@ -47,18 +47,19 @@ def delete_place(place_id):
                  strict_slashes=False)
 def creat_place(city_id):
     """create an object"""
+    kwargs = request.get_json()
     city = storage.get("City", city_id)
     if city is None:
         abort(404)
     if not request.get_json():
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
-    if user_id not in request.get_json:
+    if user_id not in kwargs:
         return make_response(jsonify({'error': 'Missing user_id'}), 400)
-    if user_id is None:
+    user = storage.get("User", kwargs['user_id'])
+    if user is None:
         abort(404)
-    if 'name' not in request.get_json():
+    if 'name' not in kwargs:
         return make_response(jsonify({'error': 'Missing name'}), 400)
-    kwargs = request.get_json()
     kwargs['city_id'] = city_id
     place = Place(**kwargs)
     place.save()
