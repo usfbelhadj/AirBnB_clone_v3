@@ -85,6 +85,8 @@ def updated(state_id):
     stid = storage.get("State", state_id)
     st = request.get_json()
     if st:
+        if st is None:
+            abort(400, "Not a JSON")
         for key, value in st.items():
             if key in ['id', 'created_at', 'updated_at']:
                 pass
@@ -92,7 +94,5 @@ def updated(state_id):
                 setattr(stid, key, value)
         storage.save()
         return jsonify(stid.to_dict()), 200
-    elif st is None:
-        abort(400, "Not a JSON")
     if stid is None:
         abort(404)
