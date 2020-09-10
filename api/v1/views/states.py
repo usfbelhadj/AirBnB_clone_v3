@@ -84,7 +84,7 @@ def updated(state_id):
     """
     stid = storage.get("State", state_id)
     st = request.get_json()
-    if st:
+    if stid:
         if st is None:
             abort(400, "Not a JSON")
         for key, value in st.items():
