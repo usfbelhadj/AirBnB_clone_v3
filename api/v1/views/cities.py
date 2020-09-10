@@ -10,8 +10,8 @@ from api.v1.views import app_views
 from models.city import City
 
 
-@app_views.route("/states/<state_id>/cities", strict_slashes=False,
-                 methods=["GET"])
+@app_views.route('/cities/<city_id>', methods=['GET'],
+                 strict_slashes=False)
 def citygetter():
     """[get all states]
     Returns:
@@ -23,10 +23,9 @@ def citygetter():
         cities.append(city.to_dict())
     return jsonify(cities)
 
-
-@app_views.route('/cities/<city_id>', methods=['GET'],
-                 strict_slashes=False)
-def citygetterst(city_id):
+@app_views.route("/states/<state_id>/cities", strict_slashes=False,
+                 methods=["GET"])
+def citygetterst(state_id):
     """[get state by id]
 
     Args:
