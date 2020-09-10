@@ -41,6 +41,7 @@ def amenitygetterall():
         objs.append(obj.to_dict())
     return jsonify(objs)
 
+
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'],
                  strict_slashes=False)
 def deleteamenity(amenity_id):
