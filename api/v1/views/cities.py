@@ -86,7 +86,6 @@ def updatedcity(city_id):
         state_id ([type]): [description]
     """
     city = storage.get(City, city_id)
-    ct = request.get_json()
     cont = request.get_json()
     if cont:
         for key, value in cont.items():
