@@ -44,7 +44,7 @@ def citygetterst(state_id):
 
 @app_views.route('/cities/<city_id>', methods=['DELETE'],
                  strict_slashes=False)
-def deletestate(state_id):
+def deletecity(city_id):
     """[delete a state by id]
 
     Returns:
@@ -61,7 +61,7 @@ def deletestate(state_id):
 
 @app_views.route('/states/<state_id>/cities',
                  methods=['POST'], strict_slashes=False)
-def createstate():
+def createcity(state_id):
     """[create state]
 
     Returns:
