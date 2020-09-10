@@ -10,6 +10,7 @@ from api.v1.views import app_views
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
+from models.user import User
 
 
 @app_views.route('/places/<place_id>',
