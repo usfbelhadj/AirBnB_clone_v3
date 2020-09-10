@@ -8,7 +8,7 @@ from models.user import User
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
-def get_users():
+def retr_users():
     """retrieve the list of all users objects"""
     users = []
     for user in storage.all("User").values():
@@ -18,7 +18,7 @@ def get_users():
 
 @app_views.route('/users/<user_id>', methods=['GET'],
                  strict_slashes=False)
-def get_user(user_id):
+def retr_user(user_id):
     """retrieve a specific user object"""
     user = storage.get("User", user_id)
     if user is None:
@@ -28,7 +28,7 @@ def get_user(user_id):
 
 @app_views.route('/users/<user_id>', methods=['DELETE'],
                  strict_slashes=False)
-def delete_user(user_id):
+def delet_user(user_id):
     """deletes an object user based on its user_id"""
     user = storage.get("User", user_id)
     if user is None:
@@ -52,7 +52,7 @@ def creat_user():
 
 @app_views.route('/users/<user_id>', methods=['PUT'],
                  strict_slashes=False)
-def updat_user(user_id):
+def reupdat_user(user_id):
     """update an exist object user"""
     user = storage.get("User", user_id)
     if user is None:
