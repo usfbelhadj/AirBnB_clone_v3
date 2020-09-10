@@ -26,7 +26,7 @@ def citygetter():
 
 @app_views.route('/cities/<city_id>', methods=['GET'],
                  strict_slashes=False)
-def citygetterst(state_id):
+def citygetterst(city_id):
     """[get state by id]
 
     Args:
