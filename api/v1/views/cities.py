@@ -66,17 +66,20 @@ def createcity(state_id):
     Returns:
         [type]: [description]
     """
-    ct = request.get_json()
-    if ct is None:
-        abort(400, "Not a JSON")
-    elif "name" not in ct.keys():
-        abort(400, "Missing name")
-    else:
-        new_state = City(**ct)
-        storage.new(new_state)
-        storage.save()
-        return jsonify(new_state.to_dict()), 201
-
+    from models.city import City
+    st = storage.get("State", state_id)
+    if st:
+        ct = request.get_json()
+        if ct is None:
+            abort(400, "Not a JSON")
+        elif "name" not in ct.keys():
+            abort(400, "Missing name")
+        else:
+            city = City(**ct)
+            storage.new(city)
+            storage.save()
+            return jsonify(city.to_dict()), 201
+    abort(404)
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
 def updatedcity(city_id):
