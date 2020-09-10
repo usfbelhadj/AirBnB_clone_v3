@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 """Module for Blueprint app_views."""
 
 from flask import Blueprint
