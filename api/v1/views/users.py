@@ -16,7 +16,7 @@ def retr_users():
     return jsonify(user)
 
 
-@app_views.route('/users/<user_id>', methods=['GET'],
+@app_views.route('/users/<string:user_id>', methods=['GET'],
                  strict_slashes=False)
 def retr_user(user_id):
     """retrieve a specific user object"""
@@ -26,7 +26,7 @@ def retr_user(user_id):
     return jsonify(user.to_dict())
 
 
-@app_views.route('/users/<user_id>', methods=['DELETE'],
+@app_views.route('/users/<string:user_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delet_user(user_id):
     """deletes an object user based on its user_id"""
@@ -52,7 +52,7 @@ def creat_user():
     return make_response(jsonify(user.to_dict()), 201)
 
 
-@app_views.route('/users/<user_id>', methods=['PUT'],
+@app_views.route('/users/<string:user_id>', methods=['PUT'],
                  strict_slashes=False)
 def reupdat_user(user_id):
     """update an exist object user"""
