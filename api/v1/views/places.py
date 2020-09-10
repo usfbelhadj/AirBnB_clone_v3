@@ -102,8 +102,8 @@ def updateplace(place_id=None):
         state_id ([type]): [description]
     """
     place = storage.get(Place, place_id)
+    cont = request.get_json()
     if place:
-        cont = request.get_json()
         if cont is None:
             abort(400, "Not a JSON")
         for k, v in cont.items():
@@ -113,4 +113,5 @@ def updateplace(place_id=None):
             setattr(place, k, v)
         storage.save()
         return jsonify(place.to_dict())
-    abort(404)
+    if place is None:
+        abort(404)
