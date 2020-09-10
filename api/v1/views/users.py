@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Create a new view for User object that handles all default RestFul API"""
+"""Create a new view for User object that handles all default RestFul API."""
 
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
