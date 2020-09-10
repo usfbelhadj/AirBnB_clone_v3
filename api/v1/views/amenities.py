@@ -86,14 +86,15 @@ def updateamenity(amenity_id=None):
         state_id ([type]): [description]
     """
     amenity = storage.get(Amenity, amenity_id)
+    cont = request.get_json()
     if amenity:
-        cont = request.get_json()
+        if cont is None:
+            abort(400, "Not a JSON")
         for key, value in cont.items():
             if key in ['id', 'created_at', 'updated_at']:
                 pass
             setattr(amenity, key, value)
         storage.save()
         return jsonify(amenity.to_dict())
-    elif cont is None:
-        abort(400, "Not a JSON")
-    abort(404)
+    if amenity is None:
+        abort(404)
