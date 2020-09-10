@@ -40,7 +40,6 @@ def citygetterst(state_id):
         abort(404)
 
 
-
 @app_views.route('/cities/<city_id>', methods=['DELETE'],
                  strict_slashes=False)
 def deletecity(city_id):
@@ -80,6 +79,7 @@ def createcity(state_id):
             storage.save()
             return jsonify(city.to_dict()), 201
     abort(404)
+
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
 def updatedcity(city_id):
