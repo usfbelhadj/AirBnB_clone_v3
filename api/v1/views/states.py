@@ -9,7 +9,7 @@ from models.state import State
 from api.v1.views import app_views
 
 
-@app_views.route('/states', methods=["GET"])
+@app_views.route('/states', methods=["GET"], strict_slashes=False)
 def statesgetter():
     """[get all states]
 
@@ -53,10 +53,10 @@ def deletestate(state_id):
         storage.save()
     else:
         abort(404)
-    return make_response(jsonify({}), 200)
+    return jsonify({}), 200
 
 
-@app_views.route('/states/<state_id>', methods=["POST"])
+@app_views.route('/states', methods=["POST"], strict_slashes=False)
 def createstate():
     """[create state]
 
@@ -64,15 +64,15 @@ def createstate():
         [type]: [description]
     """
     st = request.get_json()
-    if st:
-        n_st = State(**st)
-        storage.new(st)
-        storage.save()
-        return jsonify(n_st.to_dict()), 201
-    elif "name" not in st:
+    if st is None:
+        abort(400, "Not a JSON")
+    elif "name" not in st.keys():
         abort(400, "Missing name")
     else:
-        abort(400, "Not a JSON")
+        new_state = State(**st)
+        storage.new(new_state)
+        storage.save()
+        return jsonify(new_state.to_dict()), 201
 
 
 @app_views.route('/states/<state_id>', methods=["PUT"])
