@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 """create a new view to handle all default Restful API actions"""
 
 from flask import jsonify, abort, make_response, request
